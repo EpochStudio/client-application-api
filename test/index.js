@@ -1,3 +1,5 @@
+// more thorough tests soon, trust.
+
 (async() => {
   const fetch = require('node-fetch')
 
