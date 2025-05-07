@@ -28,7 +28,6 @@ module.exports = function (data, commands, searchParams) {
       return {
         name: c.name,
         description: c.description,
-        category: searchParams,
         nsfw: c.nsfw,
         id: c.id
       }
