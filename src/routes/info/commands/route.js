@@ -9,6 +9,12 @@ const fetch = require('node-fetch')
  * @param {Response} res
  */
 module.exports = async function(req, res) {
+  const AuthHeaders = req.headers['authorization']
+  if (!AuthHeaders) return res.status(401).json({
+    error: "Error 401 - Unauthorized",
+    type: "Client-side Problem"
+  })
+
   if (!process.env.BOT_ID || !process.env.BOT_TOKEN) {
     return res.status(500).json({
       error: "Error 500 - Internal Server Error!",
