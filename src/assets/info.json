@@ -1,3 +1,125 @@
 {
-    "category": ["General", "Moderation", "Administrator", "Utility", "Fun", "Level", "Economy", "*"]
+  "category": [
+    "General",
+    "Moderation",
+    "Administrator",
+    "Utility",
+    "Fun",
+    "Level",
+    "Economy",
+    "Giveaway",
+    "all"
+  ],
+  "commands": {
+    "Administrator": [
+      "alt",
+      "categories",
+      "commands",
+      "customcmd",
+      "greet",
+      "guildwarning",
+      "pauseinvites",
+      "premium",
+      "reactionrole",
+      "setmuterole",
+      "starboard",
+      "stickymsg"
+    ],
+    "Economy": [
+      "work",
+      "weekly",
+      "shop",
+      "rob",
+      "pay",
+      "manageshop",
+      "inventory",
+      "eco-manage",
+      "eco-leaderboard",
+      "eco-cooldowns",
+      "daily",
+      "bank",
+      "balance"
+    ],
+    "Fun": [
+      "text",
+      "ship",
+      "rate",
+      "quote",
+      "pp",
+      "periodic",
+      "onthisday",
+      "minigame",
+      "interact",
+      "imagefilter",
+      "fortune",
+      "fish",
+      "dice",
+      "coinflip",
+      "choose",
+      "calculator",
+      "8ball"
+    ],
+    "General": [
+      "upvote",
+      "tos",
+      "stats",
+      "profilewarning",
+      "profile",
+      "ping",
+      "invite",
+      "help",
+      "guilds",
+      "customize",
+      "changelogs",
+      "badgeinfo",
+      "aboutus"
+    ],
+    "Giveaway": [
+      "managegiveaway",
+      "giveaway"
+    ],
+    "Level": [
+      "reward",
+      "reset-xp",
+      "rank",
+      "rank-leaderboard",
+      "modify",
+      "level-settings"
+    ],
+    "Moderation": [
+      "warn",
+      "voicemod",
+      "unmute",
+      "unban",
+      "softban",
+      "setratelimit",
+      "purge",
+      "mute",
+      "managerole",
+      "managechannel",
+      "lockdown",
+      "kick",
+      "infractions",
+      "clone",
+      "channelaccess",
+      "ban"
+    ],
+    "Utility": [
+      "zodiac",
+      "urban",
+      "servericon",
+      "roles",
+      "reminder",
+      "randompw",
+      "list",
+      "info",
+      "github",
+      "emoji",
+      "embedcreator",
+      "echo",
+      "discorddate",
+      "avatar",
+      "afk"
+    ]
+  }
 }
