@@ -19,11 +19,11 @@ app.get('/version', (req, res) => {
 })
 
 app.get('/info/commands/:cate', (req, res) => {
-    return Routes.gimmie.commands(req, res)
+    return Routes.info.commands(req, res)
 })
 
-app.get('/info/list', (req, res) => {
-    return Routes.gimmie.list(req, res)
+app.get('/info/lists', (req, res) => {
+    return Routes.info.lists(req, res)
 })
 
 
