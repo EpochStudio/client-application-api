@@ -1,1 +1,1 @@
-module.exports.formatters = require('./formatters')
+module.exports.sorting = require('./sorting')
