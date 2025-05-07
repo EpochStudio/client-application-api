@@ -1,0 +1,3 @@
+function formatters(list) {
+    
+}
