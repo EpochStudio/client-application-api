@@ -1,0 +1,17 @@
+{
+  "name": "client-application-api",
+  "version": "1.0.0",
+  "description": "API for fetching Client Application Command, Organized. Designed for Galaxies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ChrisSch-dev",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "node-fetch": "^3.3.2"
+  }
+}
