@@ -3,7 +3,7 @@ const {category, commands} = require('../../../assets/info.json')
 const {sorting} = require('../../../utils')
 const fetch = require('node-fetch')
 
-module.exports = class VersionRoute extends Route {
+module.exports = class InfoCommandRoute extends Route {
   constructor(...args) {
     super(...args, {
       name: "/info/commands",

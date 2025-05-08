@@ -1,7 +1,7 @@
 const Route = require('../../../struct/Route')
 const {category} = require('../../../assets/info.json')
 
-module.exports = class VersionRoute extends Route {
+module.exports = class InfoListRoute extends Route {
   constructor(...args) {
     super(...args, {
       name: "/info/list",
