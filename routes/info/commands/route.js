@@ -1,6 +1,6 @@
 const { Request, Response } = require('express')
-const { category, commands } = require('../../../assets/info.json')
-const { sorting } = require('../../../utils')
+const { category, commands } = require('../../../src/assets/info.json')
+const { sorting } = require('../../../src/utils')
 const fetch = require('node-fetch')
 
 /**

@@ -1,4 +1,4 @@
-const {category} = require('../../../assets/info.json')
+const {category} = require('../../../src/assets/info.json')
 const {Request, Response} = require('express')
 
 /**

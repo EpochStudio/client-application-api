@@ -1,5 +1,5 @@
 const {Response, Request} = require('express')
-const Config = require('../../config')
+const Config = require('../../src/config')
 
 /**
  *
