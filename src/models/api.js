@@ -1,5 +1,5 @@
 const {DataTypes} = require('sequelize');
-const Model = require('../Structures/Model.js');
+const Model = require('../struct/Model.js');
 
 module.exports = class GuildsModel extends Model {
   constructor(client, manager) {
