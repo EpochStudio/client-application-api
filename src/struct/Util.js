@@ -1,6 +1,7 @@
 const {glob} = require('glob')
 const path = require('path')
 const Route = require('./Route')
+const Model = require('./Model')
 
 module.exports = class Util {
   /**
@@ -13,6 +14,12 @@ module.exports = class Util {
 
   get directory() {
     return `${path.dirname(require.main.filename)}${path.sep}`
+  }
+
+  loadFiles(directory) {
+    return glob(directory, {
+      absolute: true
+    });
   }
 
   async LoadRoutes() {
@@ -34,4 +41,6 @@ module.exports = class Util {
         console.log(err)
       })
   }
+
+
 }

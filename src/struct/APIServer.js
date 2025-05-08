@@ -22,6 +22,7 @@ module.exports = class APIServer {
   }
 
   async init() {
+    await this.database.load()
     await this.util.LoadRoutes()
 
     this.app.listen(this.config.serverPort, () => {

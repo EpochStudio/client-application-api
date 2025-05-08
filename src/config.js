@@ -9,7 +9,7 @@ module.exports = {
         postgres: {
             active: true,
             name: process.env.DATABASE_NAME,
-            username: process.env.DATABASE_NAME,
+            username: process.env.ACCOUNT_NAME,
             password: process.env.DATABASE_PASS,
             dialect: process.env.DATABASE_DIALECT,
             logging: false
