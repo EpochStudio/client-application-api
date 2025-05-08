@@ -1,7 +1,6 @@
 const {glob} = require('glob')
 const path = require('path')
 const Route = require('./Route')
-const {readdirSync} = require("node:fs");
 
 module.exports = class Util {
   /**
@@ -28,7 +27,7 @@ module.exports = class Util {
 
           if (!(routes instanceof Route)) throw new TypeError("Route File not a variant of Route main file.")
 
-          this.client.routeMap.set(routes.path, routes)
+          this.client.routeMap.set(routes.name, routes)
         }
       })
       .catch((err) => {
