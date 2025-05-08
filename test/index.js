@@ -4,9 +4,9 @@
   // fetch is native to node20, not required
   const fetch = require('node-fetch')
 
-  const lmao = await fetch(`http://49.13.205.251:9000/info/commands=c`, {
+  const lmao = await fetch(`http://localhost:9000/info/list`, {
     headers: {
-      Authorization: "LMAO"
+      Authorization: process.env.API_TOKEN
     },
   })
 
