@@ -10,9 +10,6 @@ module.exports = class APIServer {
     this.config = require('../config')
     this.limiter = ratelimit(this.config.ratelimitConfig)
 
-    /*
-    this.routes = require('../../routes')
-     */
     this.app.use(this.limiter)
 
     this.util = new Util(this)
