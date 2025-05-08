@@ -36,6 +36,8 @@ module.exports = class Util {
 
           this.client.routeMap.set(routes.name, routes)
         }
+
+        console.log(`Loaded in ${this.client.routeMap.size} endpoints`)
       })
       .catch((err) => {
         console.log(err)

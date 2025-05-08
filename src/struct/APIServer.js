@@ -22,7 +22,6 @@ module.exports = class APIServer {
     await this.database.load()
     await this.util.LoadRoutes()
 
-
     this.app.listen(this.config.serverPort, () => {
       console.log(`App running at Port: ${this.config.serverPort}`)
     })
