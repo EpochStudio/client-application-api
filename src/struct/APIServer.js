@@ -29,29 +29,34 @@ module.exports = class APIServer {
 
     this.app.use((req, res, _next) => {
       if (req.url === '/favicon.ico') return res.status(403).json({
-        code: "Code 403 - Forbidden URL"
+        code: 403,
+        message: "Forbidden URL"
       })
 
       const getRoute = this.routeMap.get(req.url.split("?")[0])
 
-      if (!getRoute) return res.status(400).json({
-        code: "Code 400 - Not Found"
+      if (!getRoute) return res.status(501).json({
+        code: 501,
+        message: "Not Implemented - This endpoint does not exist."
       })
 
       const Headers = req.headers;
       if (getRoute.authenticationLevel !== 'none') {
         if (!Headers['authorization']) return res.status(401).json({
-          code: "Code 403 - Unauthorized"
+          code: 403,
+          message: "Missing Authorization. Authorization is required for this endpoint."
         })
 
 
         const checkValidity = !!this.database.models.api.getFromToken(Headers['authorization'])
         if (!checkValidity) return res.status(401).json({
-          code: "Code 403 - Unauthorized, Faulty API Token"
+          code: 403,
+          message: "Faulty Authorization. The provided authorization is invalid."
         })
 
         if (checkValidity.level === 'token' && getRoute.authenticationLevel === 'staff') return res.status(403).json({
-          code: "Code 403 - Unauthorized, this endpoint requires a higher clearance of Token."
+          code: 403,
+          message: "Insufficient Clearance. This endpoint requires a higher-level token clearance"
         })
       }
 

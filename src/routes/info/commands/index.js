@@ -15,13 +15,14 @@ module.exports = class VersionRoute extends Route {
   async execute(req, res, param) {
     if (!process.env.BOT_ID || !process.env.BOT_TOKEN) {
       return res.status(500).json({
-        error: "Error 500 - Internal Server Error!",
-        type: "Not Configured"
+        code: 500,
+        message: "Internal Server Error - Environment Variables Not Configured.",
       })
     }
 
     if (!param || !param.category || !category.includes(param.category)) return res.status(400).json({
-      error: "Error 400 - Bad Request!"
+      code: 400,
+      message: "Bad Request - Missing param \"category\" or the provided param \"category\" is invalid."
     })
 
 
@@ -43,16 +44,17 @@ module.exports = class VersionRoute extends Route {
           raw: sort.raw
         })
       } else {
-        return res.status(404).json({error: "Error 404 - Not Found!"})
+        return res.status(502).json({
+          code: 502,
+          message: "Bad Gateway - Invalid response received from Discord API."
+        })
       }
     } catch (err) {
       console.log(err)
 
       res.status(500).json({
-        error: "Error 500 - Internal Server Error!",
-        type: "Runtime Error",
-        message: err.message,
-        fullErr: err
+        code: 500,
+        message: "Internal Server Error - Something went wrong while handling your request."
       })
     }
   }
