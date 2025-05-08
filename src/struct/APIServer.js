@@ -25,6 +25,7 @@ module.exports = class APIServer {
     await this.database.load()
     await this.util.LoadRoutes()
 
+
     this.app.listen(this.config.serverPort, () => {
       console.log(`App running at Port: ${this.config.serverPort}`)
     })
@@ -33,10 +34,6 @@ module.exports = class APIServer {
       if (req.url === '/favicon.ico') return res.status(403).json({
         code: "Code 403 - Forbidden URL"
       })
-
-      console.log(req.url);
-
-      console.log(this.routeMap)
 
       const getRoute = this.routeMap.get(req.url.split("?")[0])
 
@@ -51,7 +48,7 @@ module.exports = class APIServer {
         })
 
 
-        const checkValidity = !!this.database.models.api.get(Headers['authorization'])
+        const checkValidity = !!this.database.models.api.getFromToken(Headers['authorization'])
         if (!checkValidity) return res.status(401).json({
           code: "Code 403 - Unauthorized, Faulty API Token"
         })
