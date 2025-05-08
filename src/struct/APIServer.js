@@ -47,13 +47,13 @@ module.exports = class APIServer {
         })
 
 
-        const checkValidity = !!this.database.models.api.getFromToken(Headers['authorization'])
+        const checkValidity = this.database.models.api.getFromToken(Headers['authorization'])
         if (!checkValidity) return res.status(401).json({
           code: 403,
           message: "Faulty Authorization. The provided authorization is invalid."
         })
 
-        if (checkValidity.level === 'token' && getRoute.authenticationLevel === 'staff') return res.status(403).json({
+        if (checkValidity.level !== 'staff' && getRoute.authenticationLevel === 'staff') return res.status(403).json({
           code: 403,
           message: "Insufficient Clearance. This endpoint requires a higher-level token clearance"
         })
