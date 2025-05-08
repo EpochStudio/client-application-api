@@ -26,8 +26,6 @@ module.exports = class APIServer {
 
     await this.util.LoadRoutes()
 
-    console.log(this.routeMap.entries())
-
     this.app.use((req, res, next) => {
       console.log(req.method, req.url)
 
