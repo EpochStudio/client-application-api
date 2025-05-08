@@ -16,8 +16,8 @@ module.exports = class Util {
     return `${path.dirname(require.main.filename)}${path.sep}`
   }
 
-  LoadRoutes() {
-    glob(path.join(this.directory, "routes", "**", "*.js"))
+  async LoadRoutes() {
+    await glob(path.join(this.directory, "routes", "**", "*.js"))
       .then((routeFile) => {
         for (const route of routeFile) {
           delete require.cache[route];
