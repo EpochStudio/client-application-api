@@ -44,7 +44,6 @@ module.exports = class APIServer {
         code: "Code 400 - Not Found"
       })
 
-      /*
       const Headers = req.headers;
       if (getRoute.authenticationLevel !== 'none') {
         if (!Headers['authorization']) return res.status(401).json({
@@ -52,10 +51,15 @@ module.exports = class APIServer {
         })
 
 
-        // Further validation here;
-      }
+        const checkValidity = !!this.database.models.api.get(Headers['authorization'])
+        if (!checkValidity) return res.status(401).json({
+          code: "Code 403 - Unauthorized, Faulty API Token"
+        })
 
-       */
+        if (checkValidity.level === 'token' && getRoute.authenticationLevel === 'staff') return res.status(403).json({
+          code: "Code 403 - Unauthorized, this endpoint requires a higher clearance of Token."
+        })
+      }
 
       getRoute.execute(req, res, req.query);
     })

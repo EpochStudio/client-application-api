@@ -41,7 +41,7 @@ module.exports = class DatabaseManager {
   }
 
   get directory() {
-    return `${this.client.util.directory}/Models/*.js`
+    return `${this.client.util.directory}/models/*.js`
   }
 
   log(message) {
