@@ -6,5 +6,5 @@ const { Request, Response } = require('express')
  * @param {Response} res
  */
 module.exports = function(req, res) {
-  res.redirect('/gimmie/commands/all')
+  res.redirect('/info/commands/all')
 }
