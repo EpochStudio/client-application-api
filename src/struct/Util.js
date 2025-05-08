@@ -1,7 +1,7 @@
 const {glob} = require('glob')
 const path = require('path')
 const Route = require('./Route')
-const Model = require('./Model')
+const {Snowflake} = require("@sapphire/snowflake");
 
 module.exports = class Util {
   /**
@@ -41,6 +41,14 @@ module.exports = class Util {
         console.log(err)
       })
   }
+  get snowflake() {
+    const epoch = new Date(1614248446712);
 
+    const snowflake = new Snowflake(epoch);
 
+    return snowflake.generate();
+  }
+  async generateToken() {
+    return this.client.database.models.api.create(this.snowflake)
+  }
 }
