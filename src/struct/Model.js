@@ -3,8 +3,8 @@ module.exports = class Model {
    *
    * @param {string} name Name
    * @param {import('sequelize').ModelAttributes} attributes Attributes
-   * @param {import('./Client')} client Client
-   * @param {import('./Managers/DatabaseManager')} manager Manager
+   * @param {import('./APIServer')} client Client
+   * @param {import('./Database')} manager Manager
    */
   constructor(name, attributes, client, manager) {
     this.client = client;
