@@ -17,7 +17,7 @@ module.exports = class GuildsModel extends Model {
         type: DataTypes.TEXT,
         defaultValue: "token"
       }
-    })
+    }, client, manager)
   }
 
   create(token) {
