@@ -10,10 +10,6 @@ const limiter = ratelimit(config.ratelimitConfig)
 
 app.use(limiter)
 
-app.get('/', (req, res) => {
-    return Routes.default(req, res)
-})
-
 app.get('/version', (req, res) => {
     return Routes.version(req, res)
 })
