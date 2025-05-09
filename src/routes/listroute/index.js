@@ -11,7 +11,7 @@ module.exports = class ListRouteRoute extends Route {
   }
   async execute(req, res, _param) {
     return res.status(StatusCode.OK).json({
-      list: this.client.routeMap.keys()
+      list: [...this.client.routeMap.keys()]
     })
   }
 }
