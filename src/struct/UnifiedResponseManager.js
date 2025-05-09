@@ -1,4 +1,4 @@
-const { _codes } = require('../errors/ErrorCodes')
+const { _codes, StatusCode } = require('../errors/ErrorCodes')
 
 module.exports = class UnifiedResponseManager {
   /**
@@ -18,8 +18,14 @@ module.exports = class UnifiedResponseManager {
    */
   makeResponse(res, statusCode, args = {}) {
     const validity = this.validateResponseCode(statusCode);
-    if (!validity)
-      throw new Error("Invalid response code.")
+    if (!validity) {
+      res.status(StatusCode.InternalServerError).json({
+        statusCode: StatusCode.InternalServerError,
+        message: "Internal Server Error occurred. Please try again later."
+      })
+
+      throw new Error(`Invalid Status Code detected. Returning ISE to client.`)
+    }
 
 
     return res.status(statusCode).json({
