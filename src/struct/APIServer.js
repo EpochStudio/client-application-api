@@ -3,6 +3,8 @@ const express = require('express')
 const ratelimit = require('express-rate-limit')
 const Util = require('./Util')
 const Database = require('./Database')
+const UnifiedResponseManager = require('./UnifiedResponseManager')
+const { StatusCode } = require('../errors/ErrorCodes')
 
 module.exports = class APIServer {
   constructor() {
@@ -16,6 +18,7 @@ module.exports = class APIServer {
     this.routeMap = new Map();
 
     this.database = new Database(this)
+    this.urm = new UnifiedResponseManager(this)
   }
 
   async init() {
@@ -27,35 +30,29 @@ module.exports = class APIServer {
     })
 
     this.app.use((req, res, _next) => {
-      if (req.url === '/favicon.ico') return res.status(403).json({
-        code: 403,
-        message: "Forbidden URL"
+      if (req.url === '/favicon.ico') return this.urm.makeResponse(res, StatusCode.Forbidden, {
+        message: "Forbidden GET URL"
       })
 
       const getRoute = this.routeMap.get(req.url.split("?")[0])
 
-      if (!getRoute) return res.status(501).json({
-        code: 501,
-        message: "Not Implemented - This endpoint does not exist."
+      if (!getRoute) return this.urm.makeResponse(res, StatusCode.NotImplemented, {
+        message: "This endpoint does not exist."
       })
 
       const Headers = req.headers;
       if (getRoute.authenticationLevel !== 'none') {
-        if (!Headers['authorization']) return res.status(401).json({
-          code: 403,
-          message: "Missing Authorization. Authorization is required for this endpoint."
+        if (!Headers['authorization']) return this.urm.makeResponse(res, StatusCode.Unauthorized, {
+          message: "Authorization is required for this endpoint"
         })
 
-
         const checkValidity = this.database.models.api.getFromToken(Headers['authorization'])
-        if (!checkValidity) return res.status(401).json({
-          code: 403,
+        if (!checkValidity) return this.urm.makeResponse(res, StatusCode.Unauthorized, {
           message: "Faulty Authorization. The provided authorization is invalid."
         })
 
-        if (checkValidity.level !== 'staff' && getRoute.authenticationLevel === 'staff') return res.status(403).json({
-          code: 403,
-          message: "Insufficient Clearance. This endpoint requires a higher-level token clearance"
+        if (checkValidity.level !== 'staff' && getRoute.authenticationLevel === 'staff') return this.urm.makeResponse(res, StatusCode.Unauthorized, {
+          message: "Insufficient Clearance. This endpoint requires a higher-level token clearance."
         })
       }
 

@@ -1,5 +1,6 @@
 const Route = require('../../../struct/Route')
 const {category} = require('../../../assets/info.json')
+const { StatusCode } = require('../../../errors/ErrorCodes')
 
 module.exports = class InfoListRoute extends Route {
   constructor(...args) {
@@ -11,7 +12,7 @@ module.exports = class InfoListRoute extends Route {
   }
 
   async execute(req, res, param) {
-    res.status(200).json({
+    return this.urm.makeResponse(res, StatusCode.OK, {
       categories: category
     })
   }

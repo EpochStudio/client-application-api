@@ -2,6 +2,7 @@ const Route = require('../../../struct/Route')
 const {category, commands} = require('../../../assets/info.json')
 const {sorting} = require('../../../utils')
 const fetch = require('node-fetch')
+const { StatusCode } = require('../../../errors/ErrorCodes')
 
 module.exports = class InfoCommandRoute extends Route {
   constructor(...args) {
@@ -13,18 +14,13 @@ module.exports = class InfoCommandRoute extends Route {
   }
 
   async execute(req, res, param) {
-    if (!process.env.BOT_ID || !process.env.BOT_TOKEN) {
-      return res.status(500).json({
-        code: 500,
-        message: "Internal Server Error - Environment Variables Not Configured.",
-      })
-    }
-
-    if (!param || !param.category || !category.includes(param.category)) return res.status(400).json({
-      code: 400,
-      message: "Bad Request - Missing param \"category\" or the provided param \"category\" is invalid."
+    if (!process.env.BOT_ID || !process.env.BOT_TOKEN) return this.urm.makeResponse(res, StatusCode.InternalServerError, {
+      message: "Server environment variables not configured."
     })
 
+    if (!param || !param.category || !category.includes(param.category)) return this.urm.makeResponse(res, StatusCode.BadRequest, {
+      message: `Missing param 'category' or the provided param 'category' is invalid.`
+    })
 
     try {
       const fetchApi = await fetch(`https://discord.com/api/v10/applications/${process.env.BOT_ID}/commands`, {
@@ -37,24 +33,22 @@ module.exports = class InfoCommandRoute extends Route {
         const data = await fetchApi.json()
         const sort = sorting(data, commands, param.category)
 
-        res.status(200).json({
+        return this.urm.makeResponse(res, StatusCode.OK, {
           length: sort.toHuman.length,
           fetchedCategory: param.category,
           commands: sort.toHuman,
           raw: sort.raw
         })
       } else {
-        return res.status(502).json({
-          code: 502,
-          message: "Bad Gateway - Invalid response received from Discord API."
+        return this.urm.makeResponse(res, StatusCode.BadGateway, {
+          message: "Invalid response received from the Discord API."
         })
       }
     } catch (err) {
       console.log(err)
 
-      res.status(500).json({
-        code: 500,
-        message: "Internal Server Error - Something went wrong while handling your request."
+      return this.urm.makeResponse(res, StatusCode.InternalServerError, {
+        message: "Something went wrong while handling your request."
       })
     }
   }
