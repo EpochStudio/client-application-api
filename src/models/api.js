@@ -1,7 +1,7 @@
 const {DataTypes} = require('sequelize');
 const Model = require('../struct/Model.js');
 
-module.exports = class GuildsModel extends Model {
+module.exports = class APIModel extends Model {
   constructor(client, manager) {
     super('api', {
       id: {
