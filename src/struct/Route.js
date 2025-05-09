@@ -4,6 +4,7 @@
  * @property {?string} name
  * @property {?path} path
  * @property {"none"|"token"|"staff"} authenticationLevel
+ * @property {boolean} disabled
  */
 module.exports = class Route {
   /**
@@ -19,6 +20,8 @@ module.exports = class Route {
     this.path = options.path.split('routes')[1]
 
     this.authenticationLevel = options.authenticationLevel || "none"
+
+    this.disabled = options.disabled || false;
   }
 
   /**

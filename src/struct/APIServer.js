@@ -40,6 +40,10 @@ module.exports = class APIServer {
         message: "This endpoint does not exist."
       })
 
+      if (getRoute.disabled) return this.urm.makeResponse(res, StatusCode.ServiceUnavailable, {
+        message: "This endpoint is currently disabled."
+      })
+
       const Headers = req.headers;
       if (getRoute.authenticationLevel !== 'none') {
         if (!Headers['authorization']) return this.urm.makeResponse(res, StatusCode.Unauthorized, {
