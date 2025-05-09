@@ -6,7 +6,7 @@ module.exports = class InfoListRoute extends Route {
   constructor(...args) {
     super(...args, {
       name: "/info/list",
-      path: `${__filename.split("routes")[1]}`,
+      path: __filename,
       authenticationLevel: "token"
     })
   }

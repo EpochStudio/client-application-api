@@ -8,7 +8,7 @@ module.exports = class InfoCommandRoute extends Route {
   constructor(...args) {
     super(...args, {
       name: "/info/commands",
-      path: `${__filename.split("routes")[1]}`,
+      path: __filename,
       authenticationLevel: "token"
     })
   }

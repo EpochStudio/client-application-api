@@ -6,7 +6,7 @@ module.exports = class InfoApplicationRoute extends Route {
   constructor(...args) {
     super(...args, {
       name: "/info/application",
-      path: `${__filename.split("routes")[1]}`,
+      path: __filename,
       authenticationLevel: "staff"
     })
   }

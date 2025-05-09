@@ -16,7 +16,7 @@ module.exports = class Route {
 
     this.name = options.name;
 
-    this.path = options.path
+    this.path = options.path.split('routes')[1]
 
     this.authenticationLevel = options.authenticationLevel || "none"
   }
