@@ -4,7 +4,7 @@ module.exports = class VersionRoute extends Route {
   constructor(...args) {
     super(...args, {
       name: "/version",
-      path: __filename.split("routes")[1],
+      path: __filename,
       authenticationLevel: "none"
     })
   }
