@@ -4,7 +4,7 @@ module.exports = {
         windowMs: 5 * 6 * 1000,
         max: 100
     },
-    serverPort: 9000,
+    serverPort: process.env.API_SERVER_PORT,
     loginCredentials: {
         postgres: {
             active: true,
