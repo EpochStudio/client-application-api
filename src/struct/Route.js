@@ -1,3 +1,5 @@
+const { StatusCode } = require('../errors/ErrorCodes')
+
 /**
  *
  * @typedef {Object} Options
@@ -32,8 +34,7 @@ module.exports = class Route {
    * @returns {Promise<void>}
    */
   async execute(req, res, ...args) {
-    res.status(501).json({
-      code: 501,
+    this.client.urm.makeResponse(res, StatusCode.InternalServerError, {
       message: "This method exists, however the code for it has not been implemented."
     })
     throw new Error("The execute method has not been implemented on this API Route.")
