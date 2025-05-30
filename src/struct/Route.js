@@ -1,4 +1,4 @@
-const { StatusCode } = require('../errors/ErrorCodes')
+const { StatusCode } = require('../codes/Codes')
 
 /**
  *

@@ -1,6 +1,6 @@
 const Route = require('../../../struct/Route')
 const fetch = require('node-fetch')
-const { StatusCode } = require('../../../errors/ErrorCodes')
+const { StatusCode } = require('../../../codes/Codes')
 
 module.exports = class InfoApplicationRoute extends Route {
   constructor(...args) {

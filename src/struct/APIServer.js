@@ -4,7 +4,7 @@ const ratelimit = require('express-rate-limit')
 const Util = require('./Util')
 const Database = require('./Database')
 const UnifiedResponseManager = require('./UnifiedResponseManager')
-const { StatusCode } = require('../errors/ErrorCodes')
+const { StatusCode } = require('../codes/Codes')
 
 module.exports = class APIServer {
   constructor() {

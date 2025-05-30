@@ -1,6 +1,6 @@
 const Route = require('../../../struct/Route')
 const {category} = require('../../../assets/info.json')
-const { StatusCode } = require('../../../errors/ErrorCodes')
+const { StatusCode } = require('../../../codes/Codes')
 
 module.exports = class InfoListRoute extends Route {
   constructor(...args) {

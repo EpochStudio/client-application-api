@@ -2,7 +2,7 @@ const Route = require('../../../struct/Route')
 const {category, commands} = require('../../../assets/info.json')
 const {sorting} = require('../../../utils')
 const fetch = require('node-fetch')
-const { StatusCode } = require('../../../errors/ErrorCodes')
+const { StatusCode } = require('../../../codes/Codes')
 
 module.exports = class InfoCommandRoute extends Route {
   constructor(...args) {

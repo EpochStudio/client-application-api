@@ -1,5 +1,5 @@
 const Route = require('../../struct/Route')
-const { StatusCode } = require('../../errors/ErrorCodes')
+const { StatusCode } = require('../../codes/Codes')
 
 module.exports = class ListRouteRoute extends Route {
   constructor(...args) {

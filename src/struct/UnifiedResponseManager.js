@@ -1,4 +1,4 @@
-const { _codes, StatusCode } = require('../errors/ErrorCodes')
+const { _codes, StatusCode } = require('../codes/Codes')
 
 module.exports = class UnifiedResponseManager {
   /**
